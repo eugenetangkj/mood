@@ -4,7 +4,6 @@ To use the application, you will need to install the following requirements.
 Pip is a python package mangement system that allows you to install Python packages on your computer. Ensure that you have pip installed. Otherwise, you can visit https://pip.pypa.io/en/stable/installation/ to download pip.
 
 2. Django Installation
-
 Django is a Python framework that allows you to manage databases via Python code. You can download Django by running the command "pip install Django" in your terminal.
 
 3. Pillow Installation
