@@ -36,14 +36,15 @@
                 endButton.style.display = "block";
 
                 //Start playing music
-                meditation_music_element = document.getElementById("meditation_music")
-                meditation_music_element.loop = true
-                meditation_music_element.play()
+                meditation_music_element = document.getElementById("meditation_music");
+                meditation_music_element.loop = true;
+                meditation_music_element.play();
 
                 // Update time every 1 s
                 intervalUpdate = setInterval(function() {
                     if (shouldStopTimer) {
-                        restartTimer()
+                        restartTimer();
+                        return;
                     }
                     currentTime = new Date().getTime()
                     timeApart = endTime - currentTime

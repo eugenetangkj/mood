@@ -4,7 +4,7 @@
 _mood_ is a personal journal web application built using Javascript and Python. Javascript
 is used for front-end interactivity while the Python Django framework is utilised for
 back-end data storage. This project is submitted as my capstone project for CS50W
-Web Programming with Python and Javascript. You can view a video [here](#) that provides
+Web Programming with Python and Javascript. You can view a video [here](https://youtu.be/1PuJjJNb6qI) that provides
 an overview of _mood_.
 
 ![Ui of Mood](images/Ui.png)
@@ -12,7 +12,7 @@ an overview of _mood_.
 
 
 ## Distinctiveness and Complexity
-_mood_ is a web application that is distinct and more complex from the homework projects in CS50W. In reading this section, you may find it helpful to either first view the [video](#) mentioned earlier, or read the section on `Core Features` below.
+_mood_ is a web application that is distinct and more complex from the homework projects in CS50W. In reading this section, you may find it helpful to either first view the [video](https://youtu.be/1PuJjJNb6qI) mentioned earlier, or read the section on `Core Features` below.
 
 ### Distinctiveness
 The concept of _mood_ revolves around a personal journal application, which is an idea that was not explored in all the previous projects. While it uses Django like the other projects, instead of allowing interactions
@@ -22,7 +22,7 @@ It offers features that are unique to the concept of a journal, such as the `Med
 
 Keeping track of journal entries may seem similar to posts in Network and emails in Mail, but I feel that some similiarites are inevitable because web applications would need to keep track of information in some way or another. Hence, to set my journal entries apart, I allowed users to associate an emotion with the entry and upload an image. Emotions and images are unique to the concept of a journal entry which cannot be found in the Network and Mail projects. Furthermore, the selection of emotions is implemented as a radio button, which is not seen in previous projects as well.
 
-_mood_ offers a profile page but the profile page's features and functionality are distinctly different from that of Network. In Network, one can view his/her posts and the number of followers/following. I did my best to be different by choosing a different mode of visualisation when I choose to explore a pie chart to analyse information instead of simply displaying information retrieved from models. Also, there is a random element involved in _mood_ where the quote displayed is different everytime one visits the page.
+_mood_ offers a profile page but the profile page's features and functionality are distinctly different from that of Network. In Network, one can view his/her posts and the number of followers/following. I did my best to be different by choosing a different mode of visualisation when I choose to explore a pie chart to analyse information instead of simply displaying information retrieved from models. Also, there is a random element involved in the profile page of _mood_ where the quote displayed in it is different everytime one visits it.
 
 ### Complexity
 _mood_ is more complex because while it builds on the learning points from the previous projects, it has features that are created using knowledge not covered in CS50W. CS50W provided me with the foundations to independently explore more of Django and Javascript, but I had to learn how to incorporate the new knowledge with what I have learnt in CS50W.
@@ -40,7 +40,7 @@ I tried out a new Javascript framework, ChartJS, that was previously foreign to 
 
 3. `Copy` Feature
 
-I explored a new module, Pyperclip, to learn how to copy text to clipboard. I incorporated this functionality with my Javascript code to allow users to send API request such that `views.py` can handle the request and copy the details of an `Entry` stored in the back-end to the user's clipboard.
+I explored a new module, Pyperclip, to learn how to copy text to clipboard. I incorporated this functionality with my Javascript code to allow users to send API requests such that `views.py` can handle them and copy the details of an `Entry` stored in the back-end to the user's clipboard.
 
 4. External API call for the `Inspirational Quote` feature
 
@@ -53,21 +53,6 @@ In the projects, we have not explored the feature of uploading an image and stor
 6. Responsive Design
 
 In my opinion, responsive design added to the complexity of the project. In the previous CS50W projects, we focused solely on functionality where we did not have to handle responsiveness. However, I had to make _mood_ responsive and to do so, I explored the usage of CSS Flex and media queries. This added to the complexity of the HTML and CSS code as I had to ensure that HTML elements are grouped correctly such that I can apply CSS flex to either align items horizontally or vertically, depending on the flex-direction. Also, I have to take into account the different breakpoints and screen resolution such that my elements can scale responsively. In some parts, I had to use media queries to resize elements in smaller screens. This is definitely more complex as compared to previous projects because previous projects did not consider screen size and design outcomes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## Requirements
