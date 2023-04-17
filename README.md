@@ -10,7 +10,7 @@ an overview of _mood_.
 ![Ui of Mood](images/Ui.png)
 
 ## Requirements
-There are several requirements that you need to have before you can launch _mood_.
+There are several requirements that you need to have before you can launch _mood_. Ensure that you have pip installed before proceeding to install the other Python frameworks and modules.
 
 ### Pip Installation
 Pip is a python package mangement system that allows you to install Python packages on your computer.
@@ -18,15 +18,17 @@ Ensure that you have pip installed. Otherwise, you can visit [here](https://pip.
 
 ### Django Installation
 Django is a Python framework that allows you to manage databases via Python code. You can download Django
-by running the command `pip3 install Django` in your terminal.
+by running the command `pip install Django` in your terminal.
 
 ### Pillow Installation
 Pillow is a Python library for media processing. You can download Pillow by running the command
-`pip3 install Pillow` in your terminal.
+`pip install Pillow` in your terminal.
 
 ### Pyperclip Installation
-Pyperclip is a Python module that supports copy and paste clipboard functions. You can download Pyperclip
-by running the command `pip3 install pyperclip` in your terminal.
+Pyperclip is a Python module that supports copy and paste clipboard functions. You can download Pyperclip by running the command `pip install pyperclip` in your terminal.
+
+### Dateutil Installation
+Dateutil is a Python module that supports operations on date and time. You can download Dateutil by running the command `pip install python-dateutil` in your terminal.
 
 ### Chart.js Installation
 Chart.js is a Javascript library to visualise data through beautiful charts. You can download
@@ -34,6 +36,15 @@ Chart.js by running the command `npm install chart.js` in your terminal.
 
 
 ## Quick Start
+Ensure that you have installed all the necessary requirements before proceeding with the following steps.
+
+1. Download the application by pressing the button `Code`, and then `Download Zip` on the GitHub interface.
+2. A zipped folder called `mood-main.zip` will be downloaded. Unzip the folder to obtain a folder called `mood-main`. Within `mood-main`, you will see the following: `README.md` (file), `requirements.txt` (file), `mood` (folder) and `images` (folder). Take note of the path of the `mood` folder.
+3. Open a terminal and change directory (via the `cd` command) to the `mood` folder mentioned in Step 2.
+4. Run `python manage.py makemigrations`, followed by `python manage.py migrate`.
+5. Finally, run `python manage.py runserver`. You will be prompted with a message that indicates `Starting development server at {URL}` where URL looks like an IP address.
+6. Visit the URL mentioned in Step 5 through your browser.
+7. Start using _mood_!
 
 
 
@@ -227,7 +238,7 @@ Most of my code resides in the `journal` folder. The following briefly explains 
 
 1. `urls.py`
 
-This file contains the urls for the _mood_ application, which specifies which function in `view.py` will be called when the user visits the different urls.
+This file contains the urls for the _mood_ application, which specifies which function in `views.py` will be called when the user visits the different urls.
 
 
 2. `views.py`

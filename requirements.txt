@@ -1,0 +1,20 @@
+To use the application, you will need to install the following requirements.
+
+1. Pip Installation
+Pip is a python package mangement system that allows you to install Python packages on your computer. Ensure that you have pip installed. Otherwise, you can visit https://pip.pypa.io/en/stable/installation/ to download pip.
+
+2. Django Installation
+
+Django is a Python framework that allows you to manage databases via Python code. You can download Django by running the command "pip install Django" in your terminal.
+
+3. Pillow Installation
+Pillow is a Python library for media processing. You can download Pillow by running the command "pip install Pillow" in your terminal.
+
+4. Pyperclip Installation
+Pyperclip is a Python module that supports copy and paste clipboard functions. You can download Pyperclip by running the command "pip install pyperclip" in your terminal.
+
+5. Dateutil Installation
+Dateutil is a Python module that supports operations on date and time. You can download Dateutil by running the command "pip install python-dateutil" in your terminal.
+
+6. Chart.js Installation
+Chart.js is a Javascript library to visualise data through beautiful charts. You can download Chart.js by running the command "npm install chart.js" in your terminal.
