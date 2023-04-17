@@ -55,6 +55,74 @@ In the projects, we have not explored the feature of uploading an image and stor
 In my opinion, responsive design added to the complexity of the project. In the previous CS50W projects, we focused solely on functionality where we did not have to handle responsiveness. However, I had to make _mood_ responsive and to do so, I explored the usage of CSS Flex and media queries. This added to the complexity of the HTML and CSS code as I had to ensure that HTML elements are grouped correctly such that I can apply CSS flex to either align items horizontally or vertically, depending on the flex-direction. Also, I have to take into account the different breakpoints and screen resolution such that my elements can scale responsively. In some parts, I had to use media queries to resize elements in smaller screens. This is definitely more complex as compared to previous projects because previous projects did not consider screen size and design outcomes.
 
 
+## File Breakdown
+Most of my code resides in the `journal` folder. The following briefly explains what is contained within each file.
+
+1. `urls.py`
+
+This file contains the urls for the _mood_ application, which specifies which function in `views.py` will be called when the user visits the different urls.
+
+
+2. `views.py`
+
+This file contains the views for the _mood_ application, which are functions that will run
+when a specific URL is visited. For example, it contains the function `copy(request, entry_number)` which has the functionality of copying an entry to the clipboard when the
+URL for the copy feature is visited.
+
+
+3. `models.py`
+
+This file contains the code for the models used in the _mood_ application. In _mood_, there
+are 2 models used. The models are `User` which represents a user of _mood_ and `Entry` which
+represents a journal entry stored in _mood_.
+
+4. `templates/journal`
+
+This folder contains the HTML pages used in _mood_. I incorporated my Javascript code into
+the HTML code, hence this folder is also responsible for the front-end functionality of _mood_.
+
+| File        | Description |
+| ----------- | ----------- |
+| create.html    | HTML code for the webpage displaying the form responsible for creating a journal entry      |
+| home.html    | HTML and Javascript code for the webpage displaying the list of journal entries     |
+| index.html    | HTML code for the webpage displaying the start screen of _mood_     |
+| login.html    | HTML code for the webpage displaying the form responsible for login     |
+| meditate.html    | HTML and Javascript code for the webpage responsible for the `Meditate` feature      |
+| profile.html    | HTML and Javascript code for the webpage displaying the user's profile      |
+| register.html    | HTML code for the webpage displaying the form responsible for registration     |
+| view.html    | HTML and Javascript code for the webpage displaying a specific journal entry      |
+
+
+
+
+5. `static/journal`
+
+This folder contains two main types of resources. The first are the media assets used in
+_mood_, such as the emoticon images and the audio track file used for the Meditation feature. The second are the CSS files used to style the webpages in _mood_.
+
+| File        | Description |
+| ----------- | ----------- |
+| angry.png     | Emoticon image for "Angry" emotion       |
+| happy.png  | Emoticon image for "Happy" emotion      |
+| mood_logo.png     | Logo image for _mood_       |
+| sad.png  | Emoticon image for "Sad" emotion      |
+| surprised.png  | Emoticon image for "Surprised" emotion      |
+| create.css     | CSS code for the `create.html`       |
+| home.css     | CSS code for the `home.html`       |
+| index.css     | CSS code for the `index.html`       |
+| login.css     | CSS code for the `login.html`       |
+| meditate.css     | CSS code for the `meditate.html`       |
+| profile.css     | CSS code for the `profile.html`       |
+| register.css     | CSS code for the `register.html`       |
+| view.css     | CSS code for the `view.html`       |
+| meditation_soundtrack.mp3     | Audio soundtrack for the `Meditation` feature       |
+
+
+
+
+
+
+
 ## Requirements
 There are several requirements that you need to have before you can launch _mood_. Ensure that you have pip installed before proceeding to install the other Python frameworks and modules.
 
@@ -277,69 +345,6 @@ then redirect the user back to the `index` route which displays the start screen
 ### Responsive User Interface
 _mood_ provides a responsive user interface, where the content would adapt to the size of the browser window. This is implemented primarily via CSS-Flex and media queries.
 
-
-
-## File Breakdown
-Most of my code resides in the `journal` folder. The following briefly explains what is contained within each file.
-
-1. `urls.py`
-
-This file contains the urls for the _mood_ application, which specifies which function in `views.py` will be called when the user visits the different urls.
-
-
-2. `views.py`
-
-This file contains the views for the _mood_ application, which are functions that will run
-when a specific URL is visited. For example, it contains the function `copy(request, entry_number)` which has the functionality of copying an entry to the clipboard when the
-URL for the copy feature is visited.
-
-
-3. `models.py`
-
-This file contains the code for the models used in the _mood_ application. In _mood_, there
-are 2 models used. The models are `User` which represents a user of _mood_ and `Entry` which
-represents a journal entry stored in _mood_.
-
-4. `templates/journal`
-
-This folder contains the HTML pages used in _mood_. I incorporated my Javascript code into
-the HTML code, hence this folder is also responsible for the front-end functionality of _mood_.
-
-| File        | Description |
-| ----------- | ----------- |
-| create.html    | HTML code for the webpage displaying the form responsible for creating a journal entry      |
-| home.html    | HTML and Javascript code for the webpage displaying the list of journal entries     |
-| index.html    | HTML code for the webpage displaying the start screen of _mood_     |
-| login.html    | HTML code for the webpage displaying the form responsible for login     |
-| meditate.html    | HTML and Javascript code for the webpage responsible for the `Meditate` feature      |
-| profile.html    | HTML and Javascript code for the webpage displaying the user's profile      |
-| register.html    | HTML code for the webpage displaying the form responsible for registration     |
-| view.html    | HTML and Javascript code for the webpage displaying a specific journal entry      |
-
-
-
-
-5. `static/journal`
-
-This folder contains two main types of resources. The first are the media assets used in
-_mood_, such as the emoticon images and the audio track file used for the Meditation feature. The second are the CSS files used to style the webpages in _mood_.
-
-| File        | Description |
-| ----------- | ----------- |
-| angry.png     | Emoticon image for "Angry" emotion       |
-| happy.png  | Emoticon image for "Happy" emotion      |
-| mood_logo.png     | Logo image for _mood_       |
-| sad.png  | Emoticon image for "Sad" emotion      |
-| surprised.png  | Emoticon image for "Surprised" emotion      |
-| create.css     | CSS code for the `create.html`       |
-| home.css     | CSS code for the `home.html`       |
-| index.css     | CSS code for the `index.html`       |
-| login.css     | CSS code for the `login.html`       |
-| meditate.css     | CSS code for the `meditate.html`       |
-| profile.css     | CSS code for the `profile.html`       |
-| register.css     | CSS code for the `register.html`       |
-| view.css     | CSS code for the `view.html`       |
-| meditation_soundtrack.mp3     | Audio soundtrack for the `Meditation` feature       |
 
 
 ## Acknowledgements
