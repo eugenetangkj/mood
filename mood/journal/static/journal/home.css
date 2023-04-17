@@ -1,0 +1,161 @@
+body {
+    background-color: rgb(88, 90, 121);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+
+.navbar {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 1.25em;
+}
+
+.nav-link:hover {
+    color: rgb(219, 159, 159);
+}
+
+
+#nav-link-one {
+    color: rgb(255, 194, 150);
+}
+
+#nav-link-two {
+    color: white;
+}
+
+#nav-link-three {
+    color: white;
+}
+
+#nav-link-four {
+    color: white;
+}
+
+
+#nav-link-one:hover {
+    color: rgb(219, 159, 159);
+}
+
+#nav-link-two:hover {
+    color: rgb(219, 159, 159);
+}
+
+#nav-link-three:hover {
+    color: rgb(219, 159, 159);
+}
+
+#nav-link-four:hover {
+    color: rgb(219, 159, 159);
+}
+
+
+
+/* Body */
+.body-div {
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+
+
+h2 {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+
+span {
+    color: rgb(255, 194, 150);
+}
+
+.filter-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.filter-button {
+    background-color: rgb(255, 241, 234);
+    border-radius: 12px;
+    width: 15%;
+}
+
+.entry-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8%;
+}
+
+
+.entry-block {
+    background-color: rgb(255, 241, 234);
+    width: 50vw;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    align-self: end;
+}
+
+.title-link {
+    text-decoration: none;
+    color:rgb(88, 90, 121);
+}
+
+a:hover {
+    text-decoration: none;
+    color:rgb(219, 159, 159);
+}
+
+
+
+.emotion-img {
+    width: 40px;
+    height: 40px;
+    align-self: end;
+    margin-right: 5%;
+}
+
+.pagination-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#pagination-item-next {
+    border-radius: 12px;
+    background-color: rgb(255, 241, 234);
+    color: rgb(88, 90, 121);
+}
+
+#pagination-item-previous {
+    border-radius: 12px;
+    background-color: rgb(255, 241, 234);
+    color: rgb(88, 90, 121);
+}
+
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-link {
+        font-size: 1em;
+    }
+}

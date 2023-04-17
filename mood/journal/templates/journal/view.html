@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}mood{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'journal/view.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../../static/journal/mood_logo.png">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+          </style>
+        <script data-emotion="{{ selected_entry.emotion }}">
+            const data = document.currentScript.dataset;
+            current_emotion = data.emotion
+            document.addEventListener('DOMContentLoaded', function() {
+                // Make all form elements disappear
+                div_form = document.getElementById("div-form");
+                div_form.style.display = "none";
+
+                // Set background color accordingly
+                if (current_emotion == "happy") {
+                    document.body.style.backgroundColor = "#856A89";
+                } else if (current_emotion == "surprised") {
+                    document.body.style.backgroundColor = "#89756A";
+                } else if (current_emotion == "sad") {
+                    document.body.style.backgroundColor = "#6A7689";
+                } else {
+                    document.body.style.backgroundColor = "#896A6A";
+                }
+            })
+
+
+            //Called when user presses the copy button
+            function copyToClipboard(entry_id) {
+                entry_id_int = parseInt(entry_id);
+                //Make API call to send information to database to determine which content's information
+                //is to be copied to the clipboard
+                apiString = "/copy/" + entry_id_int
+                fetch(apiString, {
+                    method: 'POST',
+                })
+
+                //Alert the user
+                alert("Entry has been copied to clipboard!");
+                copyButton = document.getElementById("copy-button");
+                copyButton.blur();
+            }
+
+            //Called when user presses the edit button
+            function editEntry(originalTitle, originalBody, originalDate, originalEmotion, originalImage) {
+                console.log(originalTitle)
+                //Get display objects
+                title_object = document.getElementById("entry_title");
+                prelude_object = document.getElementById("prelude");
+                body_object = document.getElementById("entry_content");
+                emotion_object = document.getElementsByClassName("emotion-img")[0];
+                entry_image_object = document.getElementById("entry_image");
+
+                //Make display objects disappear
+                div_entry = document.getElementById("div-entry");
+                div_entry.style.display = "none";
+
+                //Make form objects appear
+                div_form = document.getElementById("div-form");
+                div_form.style.display = "flex";
+
+                //Prefill field forms
+                title_form = document.getElementById("title-field");
+                body_form = document.getElementById("body-field");
+                emotion_radio_boxes = document.getElementsByName('emotion');
+                image_upload = document.getElementById('img');
+
+                title_form.value = originalTitle;
+                body_form.textContent = originalBody ;
+                for (i = 0; i < emotion_radio_boxes.length; i = i + 1) {
+                    if (emotion_radio_boxes[i].value == originalEmotion) {
+                        emotion_radio_boxes[i].checked = true;
+                    }
+                }
+
+            }
+
+            //Called when user presses the cancel edit button
+            function cancelEdit() {
+                //Make display objects appear
+                div_entry = document.getElementById("div-entry");
+                div_entry.style.display = "flex";
+
+                //Make form objects disappear
+                div_form = document.getElementById("div-form");
+                div_form.style.display = "none";
+
+            }
+
+            //Called when user presses the delete button
+            function deleteEntry(entry_id) {
+                decision = confirm("Are you sure you want to delete the entry?")
+                if (decision) {
+                    //User proceeds with deletion
+                    apiString = "/delete/" + entry_id.toString()
+                    fetch(apiString, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            entry_number: entry_id
+                        })
+                    })
+                    window.location.href = '/home/all';
+
+                } else {
+                    deleteButton = document.getElementById("delete-button");
+                    deleteButton.blur();
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="navbar-div">
+              <ul class="navbar-nav mr-auto mt-5">
+                <li class="nav-item ml-3 mr-3">
+                  <a class="nav-link" id="nav-link-one" href="{% url 'home' criteria='all' %}">All Entries</a>
+                </li>
+                <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" id="nav-link-two" href="{% url 'create' %}">Create Entry</a>
+                </li>
+                <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" id="nav-link-three" href="{% url 'meditate' %}">Meditate</a>
+                </li>
+                <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" id="nav-link-four" href="{% url 'profile' %}">Profile</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <div class="body-div" id = "div-entry">
+            <h2 class="mt-3 mb-5" id="entry_title">{{ selected_entry.entry_title }}</h2>
+            <h5 id="prelude">On {{ selected_entry.date }}, you were feeling...</h5>
+            {% if selected_entry.emotion == "happy" %}
+                <img src="../../static/journal/happy.png" class="emotion-img mt-5" alt="Happy Face">
+            {% elif selected_entry.emotion == "surprised" %}
+                <img src="../../static/journal/surprised.png" class="emotion-img mt-5" alt="Surprised Face">
+            {% elif selected_entry.emotion == "sad" %}
+                <img src="../../static/journal/sad.png" class="emotion-img mt-5" alt="Sad Face">
+            {% else %}
+                <img src="../../static/journal/angry.png" class="emotion-img mt-5" alt="Angry Face"> 
+            {% endif %}
+            <p class="mt-5" id="entry_content">{{ selected_entry.entry_body }}</p>
+            <img src="{{ selected_entry.image }}" id="entry_image" class="mt-5 mb-5" alt="Entry's Image"> 
+            <div class="entry-buttons mt-5 mb-5">
+                <button type="button" class="btn filter-button ml-3 mr-3" id="edit-button"
+                onclick="editEntry('{{ selected_entry.entry_title}}', '{{ selected_entry.entry_body }}', '{{ selected_entry.date }}', '{{ selected_entry.emotion }}', '{{ selected_entry.image}}')">Edit</button>
+                <button type="button" class="btn filter-button ml-3 mr-3" id="copy-button" onclick="copyToClipboard('{{ selected_entry.id }}')">Copy</button>
+                <button type="button" class="btn filter-button ml-3 mr-3" id="delete-button" onclick="deleteEntry('{{ selected_entry.id }}')">Delete</button>
+            </div>
+        </div>
+
+        <div class="body-div" id="div-form">
+
+            <form action="{% url 'update' entry_number=selected_entry.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group mb-5">
+                    <h4>Title</h4>
+                    <input class="form-control custom-input" id="title-field" type="text" name="entry_title" placeholder="Enter a title for your entry" required>
+                </div>
+                <div class="form-group mb-5">
+                    <h4>Body</h4>
+                    <textarea class="form-control custom-input" id="body-field" rows="5" cols="20" name="entry_body" placeholder="Write down what happened today" required></textarea>
+                    <!-- <input class="form-control custom-input" id="body-field" type="textarea" cols="10" name="entry_body" placeholder="Write down what happened today"> -->
+                </div>
+
+
+                <!-- Adapted and modified from https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons -->
+                <div class="form-group mt-5 emotion-buttons">
+                    <label>
+                        <input type="radio" name="emotion" value="happy" required>
+                        <img src="../../static/journal/happy.png" alt="Happy">
+                      </label>
+                      
+                      <label class="ml-3">
+                        <input type="radio" name="emotion" value="surprised">
+                        <img src="../../static/journal/surprised.png" alt="Surprised">
+                      </label> 
+
+                      <label class="ml-3">
+                        <input type="radio" name="emotion" value="sad">
+                        <img src="../../static/journal/sad.png" alt="Sad">
+                      </label> 
+
+                      <label class="ml-3">
+                        <input type="radio" name="emotion" value="angry">
+                        <img src="../../static/journal/angry.png" alt="Angry">
+                      </label> 
+
+                </div>
+
+                <div class="form-group mt-5">
+                    <h4>Image</h4>
+                    <label for="img" class="image-label">Upload a new image:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+
+                <div class="form-button">
+                    <input class="btn" id="confirm-button" type="submit" value="Confirm">
+                    <button type="button" class="btn ml-3 mr-3" id="cancel-button" onclick="cancelEdit()">Cancel</button>
+                </div>
+            </form>
+
+
+
+        </div>
+    
+    
+    </body>
+
+
+        
+        
+
+        
+</html>

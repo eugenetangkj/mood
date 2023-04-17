@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}mood{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'journal/meditate.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../../static/journal/mood_logo.png">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+          </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                //Hide end button by default
+                endButton = document.getElementById("end-button")
+                endButton.style.display = "none";
+            })
+
+            // Global variable
+            shouldStopTimer = false;
+
+            // Called when user presses start
+            // Adapted from https://www.w3schools.com/howto/howto_js_countdown.asp
+            function startTimer() {
+                shouldStopTimer = false;
+                startTime = new Date().getTime();
+                endTime = new Date(startTime + 1 * 60 * 1000);
+
+                //Hide start button
+                startButton = document.getElementById("start-button");
+                startButton.style.display = "none";
+
+                //Make end button appear
+                endButton = document.getElementById("end-button");
+                endButton.style.display = "block";
+
+                //Start playing music
+                meditation_music_element = document.getElementById("meditation_music")
+                meditation_music_element.loop = true
+                meditation_music_element.play()
+
+                // Update time every 1 s
+                intervalUpdate = setInterval(function() {
+                    if (shouldStopTimer) {
+                        restartTimer()
+                    }
+                    currentTime = new Date().getTime()
+                    timeApart = endTime - currentTime
+                    minutesRemaining = Math.floor((timeApart % (1000 * 60 * 60)) / (1000 * 60));
+                    secondsRemaining = Math.floor((timeApart % (1000 * 60)) / 1000);
+              
+                    // Append number in front if required
+                    if (minutesRemaining < 10) {
+                        minutesRemaining = "0" + minutesRemaining.toString();
+                    }
+                    if (secondsRemaining < 10) {
+                        secondsRemaining = "0" + secondsRemaining.toString();
+                    }
+            
+                    // Update timer
+                    if (! shouldStopTimer) {
+                        document.getElementById("timer-time").innerHTML = minutesRemaining + " : " + secondsRemaining;
+                    }
+
+                    // Count down is over. Add 1 to meditate count
+                    if (timeApart < 0) {
+                        shouldStopTimer = true;
+                        startButton.style.display = "block";
+                        clearInterval(intervalUpdate);
+                        document.getElementById("timer-time").innerHTML = "01" + " : " + "00"
+                        //Send API request to update meditate count for the user
+                        apiString = "/meditate";
+                        fetch(apiString, {
+                            method: 'PUT',
+                        })
+                        .then(response => response.json())
+                        .then(result => {
+                            //Get new meditation count and update screen
+                            newMeditationCount = result["number_of_meditations"];
+                            count_element = document.getElementById("meditation-count");
+                            count_element.innerHTML = newMeditationCount;
+                            resetScreen();
+
+                        })
+                    }
+                }, 1000)
+            }
+
+            //Called when user presses end
+            function restartTimer() {
+                shouldStopTimer = true
+                resetScreen();
+            }
+
+            //Reset everything after timer ends
+            function resetScreen() {
+                // Make start button appear again
+                startButton = document.getElementById("start-button");
+                startButton.style.display = "block";
+
+                //Make end button disappear
+                endButton = document.getElementById("end-button");
+                endButton.style.display = "none";
+
+                //Stop audio
+                meditation_music_element = document.getElementById("meditation_music")
+                meditation_music_element.pause();
+                meditation_music_element.currentTime = 0;
+
+                //Reset timing
+                document.getElementById("timer-time").innerHTML = "01 : 00";
+            }
+
+
+
+
+            
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="navbar-div">
+              <ul class="navbar-nav mr-auto mt-5">
+                <li class="nav-item ml-3 mr-3">
+                  <a class="nav-link" id="nav-link-one" href="{% url 'home' criteria='all' %}">All Entries</a>
+                </li>
+                <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" id="nav-link-two" href="{% url 'create' %}">Create Entry</a>
+                </li>
+                <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" id="nav-link-three" href="{% url 'create' %}">Meditate</a>
+                </li>
+                <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" id="nav-link-four" href="{% url 'profile' %}">Profile</a>
+                </li>
+              </ul>
+            </div>
+        </nav> 
+
+        <div class="body-div">
+            <h2 class="mt-3 mb-4"><span>Relax</span> your mind.</h2>
+            <h4 class="mt-1 mb-2">Start the timer and close your eyes.</h4>
+            <p class="mt-3" id="timer-time">01 : 00</p>
+            <div class="timer-button">
+                <button type="button" class="btn ml-3 mr-3" id="start-button" onclick="startTimer()">Start</button>
+                <button type="button" class="btn ml-3 mr-3" id="end-button" onclick="restartTimer()">End</button>
+            </div>
+            <h4 class="mt-5">Total number of meditations completed</h4>
+            <p class="mt-1" id="meditation-count">{{ user.number_of_meditations }}</p>
+            <audio id="meditation_music" hidden>
+                <source src="../../static/journal/meditation_soundtrack.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        
+    
+</html>
+
+
+

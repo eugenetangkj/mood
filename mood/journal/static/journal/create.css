@@ -1,0 +1,188 @@
+body {
+    background-color: rgb(88, 90, 121);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+
+.navbar {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 1.25em;
+}
+
+.nav-link:hover {
+    color: rgb(219, 159, 159);
+}
+
+
+#nav-link-one {
+    color: white;
+}
+
+#nav-link-two {
+    color: rgb(255, 194, 150);
+}
+
+#nav-link-three {
+    color: white;
+}
+
+#nav-link-four {
+    color: white;
+}
+
+#nav-link-one:hover {
+    color: rgb(219, 159, 159);
+}
+
+#nav-link-two:hover {
+    color: rgb(219, 159, 159);
+}
+
+#nav-link-three:hover {
+    color: rgb(219, 159, 159);
+}
+
+#nav-link-four:hover {
+    color: rgb(219, 159, 159);
+}
+
+
+/* Body */
+.body-div {
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+
+
+h2 {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+
+span {
+    color: rgb(255, 194, 150);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.custom-input {
+    border-radius: 12px;
+    background-color: rgb(255, 241, 234);
+    color: rgb(88, 90, 121);
+}
+
+.custom-input:focus {
+    background-color: rgb(255, 194, 150);
+    color: rgb(88, 90, 121);
+    border: none;
+}
+
+#title-field {
+    width: 80vw;
+
+}
+
+#body-field {
+    width: 80vw;
+    height: 20vh;
+    padding: 10px;
+}
+
+h4 {
+    text-align: left;
+    color: white;
+}
+
+/* Adapted and modified from https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons */
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + img {
+    cursor: pointer;
+}
+
+[type=radio]:checked + img {
+    outline: 2px solid #FFF1EA;
+    background-color: #FFF1EA;
+    border-radius: 12px;
+}
+
+.emotion-buttons {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.image-label {
+    color: white;
+}
+
+#img {
+    color: white;
+}
+
+
+
+.btn {
+    width: 150px;
+    height: 50px;
+    background-color: rgb(255, 241, 234);
+    border: none;
+    border-radius: 12px;
+    color: rgb(88, 90, 121);
+    font-size: 1.5em;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    align-self: center;
+}
+
+.btn:hover {
+    background-color: rgb(255, 194, 150);
+    color: rgb(88, 90, 121);
+    border: none;
+}
+
+.btn:focus {
+    background-color: rgb(255, 194, 150);
+    color: rgb(88, 90, 121);
+    border: none;
+}
+
+
+
+
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-link {
+        font-size: 1em;
+    }
+}

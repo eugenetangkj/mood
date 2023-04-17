@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(88, 90, 121);
+    font-family: 'Poppins', sans-serif;
+}
+
+.body-div {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: rgb(255, 194, 150);
+    font-size: 4em;
+}
+
+h2 {
+    color: white;
+}
+
+.button-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-button {
+    width: 200px;
+    height: 50px;
+    background-color: rgb(255, 241, 234);
+    border: none;
+    border-radius: 12px;
+    color: rgb(88, 90, 121);
+    font-size: 1.5em;
+
+}
+
+.custom-button:hover {
+    background-color: rgb(255, 194, 150);
+    color: rgb(88, 90, 121);
+
+}
+
+.custom-button:focus {
+    background-color: rgb(255, 194, 150);
+    color: rgb(88, 90, 121);
+    border: none;
+}
